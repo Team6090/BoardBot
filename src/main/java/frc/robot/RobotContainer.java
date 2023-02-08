@@ -6,13 +6,22 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
+import frc.robot.operator_interface.OperatorInterface;
+import frc.robot.subsystems.PivotSystem;
 
 public class RobotContainer {
+
+  private OperatorInterface oi = new OperatorInterface() {};
+  private PivotSystem pivotSystem = new PivotSystem();
+
   public RobotContainer() {
     configureBindings();
   }
 
-  private void configureBindings() {}
+  private void configureBindings() {
+    oi.moveArmForward().onTrue(pivotSystem.PivotArm(0.2));
+    oi.moveArmBackward().onTrue(pivotSystem.PivotArm(-0.2));
+  }
 
   public Command getAutonomousCommand() {
     return Commands.print("No autonomous command configured");
