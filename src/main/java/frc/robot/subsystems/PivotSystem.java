@@ -6,6 +6,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.sensors.CANCoder;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class PivotSystem extends SubsystemBase{
@@ -33,9 +34,10 @@ public class PivotSystem extends SubsystemBase{
     }
 
     /* Create code that moves the arm based on the power being applied */
-    public void PivotArm(double power) {
+    public Command PivotArm(double power) {
         pivotMotorLeft.set(TalonFXControlMode.Velocity, power);
         pivotMotorRight.set(TalonFXControlMode.Velocity, -power);
+        return null;
     }
 
     /* Retrive the cancoder's position to find the pivot of the arm */
