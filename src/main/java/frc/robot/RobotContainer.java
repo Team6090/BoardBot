@@ -6,13 +6,11 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
-import frc.robot.subsystems.Sensors;
+import frc.robot.subsystems.intake.IntakeSystem;
 
 public class RobotContainer {
-
-  Sensors sensors = new Sensors();
-
   public RobotContainer() {
+    IntakeSystem intakeSystem = new IntakeSystem();
     configureBindings();
   }
 
