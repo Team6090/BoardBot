@@ -7,6 +7,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.net.PortForwarder;
 
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
@@ -16,6 +17,13 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     m_robotContainer = new RobotContainer();
+    {
+      // Make sure you only configure port forwarding once in your robot code.
+      // Do not place these function calls in any periodic functions
+      for (int port = 5800; port <= 5805; port++) {
+          PortForwarder.add(port, "limelight.local", port);
+      }
+  }
   }
 
   @Override
